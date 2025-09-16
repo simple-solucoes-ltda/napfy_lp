@@ -115,6 +115,8 @@ export function Header() {
                               Funcionalidades
                             </MobileNavLink>
                             <MobileNavLink href="/#faqs">Dúvidas</MobileNavLink>
+                            <MobileNavLink href="/terms">Termos</MobileNavLink>
+                            <MobileNavLink href="/privacy">Privacidade</MobileNavLink>
                           </div>
                           <div className="mt-8 flex flex-col gap-4">
                             <Button href="https://apps.apple.com/app/napfy" color="orange">Baixar o app</Button>

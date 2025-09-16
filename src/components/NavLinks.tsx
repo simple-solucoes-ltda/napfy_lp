@@ -8,13 +8,19 @@ export function NavLinks() {
   let [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
   let timeoutRef = useRef<number | null>(null)
 
-  return [
-    ['Funcionalidades', '/#features'],
-    ['Dúvidas', '/#faqs'],
-  ].map(([label, href], index) => (
+  const links: [string, string, boolean][] = [
+    ['Funcionalidades', '/#features', false],
+    ['Dúvidas', '/#faqs', false],
+    ['Termos', '/terms', false],
+    ['Privacidade', '/privacy', false],
+  ]
+
+  return links.map(([label, href, isExternal], index) => (
     <Link
       key={label}
       href={href}
+      target={isExternal ? "_blank" : undefined}
+      rel={isExternal ? "noopener noreferrer" : undefined}
       className="relative -mx-3 -my-2 rounded-lg px-3 py-2 text-sm text-white transition-colors delay-150 hover:text-gray-100 hover:delay-0"
       onMouseEnter={() => {
         if (timeoutRef.current) {
