@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { Container } from '@/components/Container'
 
 export function MarlaStory() {
@@ -21,9 +20,9 @@ export function MarlaStory() {
                   </svg>
                   <blockquote className="mt-6">
                     <p className="text-lg font-medium">
-                      "Depois de 4 anos sem dormir direito com meu primeiro filho,
+                      &ldquo;Depois de 4 anos sem dormir direito com meu primeiro filho,
                       eu sabia que tinha que existir uma forma melhor.
-                      Foi quando decidi criar o Napfy."
+                      Foi quando decidi criar o Napfy.&rdquo;
                     </p>
                     <footer className="mt-6">
                       <p className="text-[var(--color-napfy-gold)] font-semibold">
@@ -44,9 +43,9 @@ export function MarlaStory() {
                   <span className="text-2xl">😴</span> O Problema
                 </h3>
                 <p className="mt-2 text-gray-600">
-                  "Eu tentei de tudo: livros, consultoras, apps estrangeiros.
+                  &ldquo;Eu tentei de tudo: livros, consultoras, apps estrangeiros.
                   Nada funcionava para a nossa realidade brasileira.
-                  Gastei uma fortuna e continuava exausta."
+                  Gastei uma fortuna e continuava exausta.&rdquo;
                 </p>
               </div>
 
@@ -55,8 +54,8 @@ export function MarlaStory() {
                   <span className="text-2xl">💡</span> A Descoberta
                 </h3>
                 <p className="mt-2 text-gray-600">
-                  "Quando descobri sobre as janelas de sono e a ciência por trás delas,
-                  tudo mudou. Mas calcular manualmente era impossível com um bebê no colo."
+                  &ldquo;Quando descobri sobre as janelas de sono e a ciência por trás delas,
+                  tudo mudou. Mas calcular manualmente era impossível com um bebê no colo.&rdquo;
                 </p>
               </div>
 
@@ -65,8 +64,8 @@ export function MarlaStory() {
                   <span className="text-2xl">🚀</span> A Solução
                 </h3>
                 <p className="mt-2 text-gray-600">
-                  "Junto com meu marido Fábio, desenvolvedor, criamos o Napfy.
-                  Um app simples, baseado na ciência da SBP, que faz o trabalho pesado por você."
+                  &ldquo;Junto com meu marido Fábio, desenvolvedor, criamos o Napfy.
+                  Um app simples, baseado na ciência da SBP, que faz o trabalho pesado por você.&rdquo;
                 </p>
               </div>
             </div>
@@ -86,9 +85,9 @@ export function MarlaStory() {
           <div className="mt-16 rounded-2xl bg-gradient-to-r from-[var(--color-napfy-gold)]/20 to-[var(--color-napfy-gold)]/10 p-8">
             <div className="text-center">
               <p className="text-lg font-medium text-gray-900">
-                "Hoje, mais de 5.000 famílias brasileiras dormem melhor graças ao Napfy.
+                &ldquo;Hoje, mais de 5.000 famílias brasileiras dormem melhor graças ao Napfy.
                 E saber que cada família que dorme bem é uma mãe menos exausta...
-                isso não tem preço."
+                isso não tem preço.&rdquo;
               </p>
               <p className="mt-4 text-sm text-gray-600">
                 — Marla, uma mãe que entende você
