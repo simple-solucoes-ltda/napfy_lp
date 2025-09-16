@@ -12,7 +12,7 @@ export default function Privacy() {
           <p className="text-gray-300 mb-8">Data de vigência: 16/09/2025</p>
 
           <p className="text-gray-200 mb-8">
-            A Simple Soluções LTDA ("nós") respeita sua privacidade e a de sua família. Esta política explica nossas práticas.
+            A Simple Soluções LTDA (&quot;nós&quot;) respeita sua privacidade e a de sua família. Esta política explica nossas práticas.
           </p>
 
           <div className="space-y-8 text-gray-200">

@@ -1,6 +1,7 @@
 import { type Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import clsx from 'clsx'
+import { Analytics } from '@vercel/analytics/react'
 
 import '@/styles/tailwind.css'
 
@@ -26,7 +27,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR" className={clsx('bg-gray-50 antialiased', inter.variable)}>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Analytics />
+      </body>
     </html>
   )
 }

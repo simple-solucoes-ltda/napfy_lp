@@ -14,12 +14,12 @@ export default function Terms() {
           <div className="space-y-8 text-gray-200">
             <section>
               <h2 className="text-2xl font-medium text-white mb-3">1. ACEITAÇÃO DOS TERMOS</h2>
-              <p>Ao baixar, instalar ou usar o aplicativo Napfy ("App"), você concorda com estes Termos de Uso. Se não concordar, não use o App.</p>
+              <p>Ao baixar, instalar ou usar o aplicativo Napfy (&quot;App&quot;), você concorda com estes Termos de Uso. Se não concordar, não use o App.</p>
             </section>
 
             <section>
               <h2 className="text-2xl font-medium text-white mb-3">2. SOBRE O NAPFY</h2>
-              <p>O Napfy é um aplicativo de acompanhamento de sono infantil desenvolvido pela Simple Soluções LTDA, CNPJ 19.862.454/0001-01 ("nós", "nosso").</p>
+              <p>O Napfy é um aplicativo de acompanhamento de sono infantil desenvolvido pela Simple Soluções LTDA, CNPJ 19.862.454/0001-01 (&quot;nós&quot;, &quot;nosso&quot;).</p>
             </section>
 
             <section>
@@ -55,7 +55,7 @@ export default function Terms() {
             <section>
               <h2 className="text-2xl font-medium text-white mb-3">7. LIMITAÇÃO DE RESPONSABILIDADE</h2>
               <div className="space-y-2">
-                <p>7.1. O App é fornecido "como está"</p>
+                <p>7.1. O App é fornecido &quot;como está&quot;</p>
                 <p>7.2. Não garantimos resultados específicos de sono</p>
                 <p>7.3. Não nos responsabilizamos por decisões tomadas com base no App</p>
                 <p>7.4. Recomendamos sempre consultar um pediatra</p>
