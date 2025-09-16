@@ -1,0 +1,74 @@
+{
+  "metadata": {
+    "title": "Napfy - O sono do seu bebê sob controle",
+    "description": "Napfy calcula as janelas de sono ideais e envia lembretes no momento perfeito. Baseado nas diretrizes da Sociedade Brasileira de Pediatria."
+  },
+  "header": {
+    "nav": {
+      "features": "Funcionalidades",
+      "faqs": "Dúvidas"
+    },
+    "downloadApp": "Baixar app",
+    "downloadFullApp": "Baixar o app"
+  },
+  "hero": {
+    "title": "O sono do seu bebê sob controle",
+    "description": "Napfy calcula as janelas de sono ideais e envia lembretes no momento perfeito. Baseado nas diretrizes da Sociedade Brasileira de Pediatria.",
+    "downloadApp": "Baixar o app",
+    "howItWorks": "Ver como funciona",
+    "available": "Disponível agora para iPhone, iPad e Apple Watch"
+  },
+  "features": {
+    "title": "Tudo que você precisa para o sono perfeito",
+    "subtitle": "Baseado na ciência da Sociedade Brasileira de Pediatria",
+    "sleepTracker": {
+      "name": "Rastreamento Completo",
+      "description": "Acompanhe todos os períodos de sono do seu bebê com análise detalhada de padrões e tendências."
+    },
+    "history": {
+      "name": "Histórico Detalhado",
+      "description": "Visualize todo o histórico de sono do seu bebê com informações precisas sobre cada soneca."
+    },
+    "analysis": {
+      "name": "Análise Inteligente",
+      "description": "Visualize a evolução do sono com gráficos e insights personalizados para melhorar a rotina."
+    }
+  },
+  "faqs": {
+    "title": "Perguntas frequentes",
+    "subtitle": "Se você tiver outras dúvidas,",
+    "contactUs": "entre em contato",
+    "questions": {
+      "howItCalculates": {
+        "question": "Como o Napfy calcula as janelas de sono?",
+        "answer": "O Napfy utiliza algoritmos baseados nas diretrizes da Sociedade Brasileira de Pediatria e aprende com os padrões do seu bebê. O app ajusta automaticamente as janelas conforme a idade e comportamento individual."
+      },
+      "newborns": {
+        "question": "O Napfy funciona para recém-nascidos?",
+        "answer": "Sim! O Napfy funciona desde o nascimento até os 3 anos. Para recém-nascidos, o app considera as necessidades especiais dessa fase e ajuda a estabelecer gradualmente uma rotina saudável."
+      },
+      "offline": {
+        "question": "O app funciona offline?",
+        "answer": "Sim, as principais funcionalidades do Napfy funcionam offline. Você pode registrar sonos e receber lembretes sem internet. Os dados são sincronizados quando você se conectar."
+      },
+      "android": {
+        "question": "O app está disponível para Android?",
+        "answer": "No momento o Napfy está disponível apenas para iPhone na App Store. Estamos trabalhando na versão Android que será lançada em breve."
+      },
+      "cancelSubscription": {
+        "question": "Como cancelo minha assinatura?",
+        "answer": "Você pode cancelar sua assinatura a qualquer momento diretamente nas configurações da App Store. Não há multas ou taxas de cancelamento."
+      },
+      "dataSecure": {
+        "question": "Os dados do meu bebê são seguros?",
+        "answer": "Absolutamente! Utilizamos criptografia de ponta e todos os dados são armazenados de forma segura. Nunca compartilhamos informações pessoais com terceiros."
+      }
+    }
+  },
+  "footer": {
+    "copyright": "Todos os direitos reservados.",
+    "tagline": "Sono perfeito para seu bebê",
+    "downloadApp": "Baixe o app",
+    "scanQr": "Escaneie o QR code para baixar o app na App Store."
+  }
+}
