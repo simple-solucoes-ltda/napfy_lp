@@ -31,13 +31,13 @@ export function Footer() {
             </div>
           </div>
           <div className="group relative -mx-4 flex items-center self-stretch p-4 transition-colors hover:bg-white/10 sm:self-auto sm:rounded-2xl lg:mx-0 lg:self-auto lg:p-6">
-            <div className="relative flex h-24 w-24 flex-none items-center justify-center">
+            <div className="relative flex h-28 w-28 flex-none items-center justify-center p-0.5">
               <QrCodeBorder className="absolute inset-0 h-full w-full stroke-gray-300 transition-colors group-hover:stroke-[#13B8A6]" />
-              <Image src={qrCode} alt="" unoptimized />
+              <Image src={qrCode} alt="" unoptimized className="h-full w-full invert" />
             </div>
             <div className="ml-8 lg:w-64">
               <p className="text-base font-semibold text-white">
-                <Link href="https://apps.apple.com/app/napfy">
+                <Link href="https://apps.apple.com/br/app/napfy/id6752109860" target="_blank" rel="noopener noreferrer">
                   <span className="absolute inset-0 sm:rounded-2xl" />
                   Baixe o app
                 </Link>

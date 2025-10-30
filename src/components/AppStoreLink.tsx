@@ -8,8 +8,10 @@ export function AppStoreLink({
 }) {
   return (
     <Link
-      href="#"
+      href="https://apps.apple.com/br/app/napfy/id6752109860"
       aria-label="Download on the App Store"
+      target="_blank"
+      rel="noopener noreferrer"
       className={clsx(
         'rounded-lg transition-colors px-4',
         color === 'black'

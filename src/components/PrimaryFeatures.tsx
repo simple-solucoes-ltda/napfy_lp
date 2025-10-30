@@ -150,12 +150,12 @@ function FeaturesDesktop() {
         {features.map((feature, featureIndex) => (
           <div
             key={feature.name}
-            className="relative rounded-2xl transition-colors hover:bg-[#0D9387]/20"
+            className="relative rounded-2xl transition-colors hover:bg-teal-900/40"
           >
             {featureIndex === selectedIndex && (
               <motion.div
                 layoutId="activeBackground"
-                className="absolute inset-0 bg-[#0D9387]/20"
+                className="absolute inset-0 bg-teal-900/60"
                 initial={{ borderRadius: 16 }}
               />
             )}

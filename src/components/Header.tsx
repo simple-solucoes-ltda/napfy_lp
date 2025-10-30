@@ -119,7 +119,7 @@ export function Header() {
                             <MobileNavLink href="/privacy">Privacidade</MobileNavLink>
                           </div>
                           <div className="mt-8 flex flex-col gap-4">
-                            <Button href="https://apps.apple.com/app/napfy" color="orange">Baixar o app</Button>
+                            <Button href="https://apps.apple.com/br/app/napfy/id6752109860" color="orange">Baixar o app</Button>
                           </div>
                         </PopoverPanel>
                       </>
@@ -129,7 +129,7 @@ export function Header() {
               )}
             </Popover>
             <div className="flex items-center gap-6 max-lg:hidden">
-              <Button href="https://apps.apple.com/app/napfy" color="orange">Baixar app</Button>
+              <Button href="https://apps.apple.com/br/app/napfy/id6752109860" color="orange">Baixar app</Button>
             </div>
           </div>
         </Container>

@@ -1,42 +1,39 @@
+'use client'
+
 import { Container } from '@/components/Container'
+import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
 
 const faqs = [
-  [
-    {
-      question: 'Como o Napfy calcula as janelas de sono?',
-      answer:
-        'O Napfy utiliza algoritmos baseados nas diretrizes da Sociedade Brasileira de Pediatria e aprende com os padrões do seu bebê. O app ajusta automaticamente as janelas conforme a idade e comportamento individual.',
-    },
-    {
-      question: 'O Napfy funciona para recém-nascidos?',
-      answer:
-        'Sim! O Napfy funciona desde o nascimento até os 3 anos. Para recém-nascidos, o app considera as necessidades especiais dessa fase e ajuda a estabelecer gradualmente uma rotina saudável.',
-    },
-  ],
-  [
-    {
-      question: 'O app funciona offline?',
-      answer:
-        'Sim, as principais funcionalidades do Napfy funcionam offline. Você pode registrar sonos e receber lembretes sem internet. Os dados são sincronizados quando você se conectar.',
-    },
-    {
-      question: 'O app está disponível para Android?',
-      answer:
-        'No momento o Napfy está disponível apenas para iPhone na App Store. Estamos trabalhando na versão Android que será lançada em breve.',
-    },
-  ],
-  [
-    {
-      question: 'Como cancelo minha assinatura?',
-      answer:
-        'Você pode cancelar sua assinatura a qualquer momento diretamente nas configurações da App Store. Não há multas ou taxas de cancelamento.',
-    },
-    {
-      question: 'Os dados do meu bebê são seguros?',
-      answer:
-        'Absolutamente! Utilizamos criptografia de ponta e todos os dados são armazenados de forma segura. Nunca compartilhamos informações pessoais com terceiros.',
-    },
-  ],
+  {
+    question: 'Como funciona o teste grátis de 3 dias?',
+    answer:
+      'Você pode usar todas as funcionalidades por 3 dias. Se cancelar durante o teste, não é cobrado nada. Se não cancelar, a cobrança acontece automaticamente após os 3 dias.',
+  },
+  {
+    question: 'Funciona para recém-nascidos?',
+    answer:
+      'SIM! O Napfy funciona desde o nascimento até os 3 anos. Para recém-nascidos, o app ajuda você a identificar padrões desde cedo e estabelecer uma rotina gradualmente.',
+  },
+  {
+    question: 'É difícil de usar?',
+    answer:
+      'Não! São apenas 2 botões: "Acordar" e "Dormir". Leva 2 segundos para registrar. O app faz todo o resto automaticamente.',
+  },
+  {
+    question: 'Quanto tempo leva para ver resultados?',
+    answer:
+      'A maioria das mães relata melhora em 3-5 dias. O bebê precisa de alguns dias para se adaptar à rotina mais consistente.',
+  },
+  {
+    question: 'Funciona offline?',
+    answer:
+      'SIM! As principais funcionalidades funcionam offline. Você pode registrar sonos e receber lembretes sem internet.',
+  },
+  {
+    question: 'Os dados são seguros?',
+    answer:
+      'ABSOLUTAMENTE! Criptografia de ponta a ponta. NUNCA compartilhamos com terceiros.',
+  },
 ]
 
 export function Faqs() {
@@ -47,43 +44,61 @@ export function Faqs() {
       className="border-t border-white/20 py-20 sm:py-32"
     >
       <Container>
-        <div className="mx-auto max-w-2xl lg:mx-0">
+        <div className="mx-auto max-w-4xl">
           <h2
             id="faqs-title"
-            className="text-3xl font-medium tracking-tight text-white"
+            className="text-3xl font-medium tracking-tight text-white sm:text-4xl"
           >
             Perguntas frequentes
           </h2>
-          <p className="mt-2 text-lg text-gray-200">
-            Se você tiver outras dúvidas,{' '}
-            <a
-              href="mailto:hello@napfy.co"
-              className="text-white underline"
-            >
-              entre em contato
-            </a>
-            .
-          </p>
+
+          <div className="mt-16 space-y-6">
+            {faqs.map((faq, index) => (
+              <Disclosure key={index}>
+                {({ open }) => (
+                  <div className="rounded-2xl border border-teal-500/40 bg-teal-900/40 transition-colors hover:bg-teal-900/60">
+                    <DisclosureButton className="flex w-full items-center justify-between px-6 py-6 text-left">
+                      <span className="text-lg font-semibold text-white">
+                        {faq.question}
+                      </span>
+                      <svg
+                        className={`h-6 w-6 flex-shrink-0 text-teal-400 transition-transform ${
+                          open ? 'rotate-180' : ''
+                        }`}
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M19 9l-7 7-7-7"
+                        />
+                      </svg>
+                    </DisclosureButton>
+                    <DisclosurePanel className="px-6 pb-6 pt-0">
+                      <p className="text-base text-gray-300">{faq.answer}</p>
+                    </DisclosurePanel>
+                  </div>
+                )}
+              </Disclosure>
+            ))}
+          </div>
+
+          <div className="mt-16 text-center">
+            <p className="text-lg text-gray-300">
+              Se você tiver outras dúvidas,{' '}
+              <a
+                href="mailto:hello@napfy.co"
+                className="text-gray-300 underline transition-colors hover:text-white"
+              >
+                entre em contato
+              </a>
+              .
+            </p>
+          </div>
         </div>
-        <ul
-          role="list"
-          className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 sm:mt-20 lg:max-w-none lg:grid-cols-3"
-        >
-          {faqs.map((column, columnIndex) => (
-            <li key={columnIndex}>
-              <ul role="list" className="space-y-10">
-                {column.map((faq, faqIndex) => (
-                  <li key={faqIndex}>
-                    <h3 className="text-lg/6 font-semibold text-white">
-                      {faq.question}
-                    </h3>
-                    <p className="mt-4 text-sm text-gray-200">{faq.answer}</p>
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ul>
       </Container>
     </section>
   )

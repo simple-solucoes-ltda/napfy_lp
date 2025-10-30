@@ -1,11 +1,9 @@
 import { useId } from 'react'
-import Image from 'next/image'
 
 import { AppStoreLink } from '@/components/AppStoreLink'
-import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import { PhoneFrame } from '@/components/PhoneFrame'
-import mainScreen from '@/images/Screen - Main.jpg'
+import { VideoPlayer } from '@/components/VideoPlayer'
 
 function BackgroundIllustration(props: React.ComponentPropsWithoutRef<'div'>) {
   let id = useId()
@@ -76,19 +74,6 @@ function BackgroundIllustration(props: React.ComponentPropsWithoutRef<'div'>) {
   )
 }
 
-function PlayIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
-      <circle cx="12" cy="12" r="11.5" stroke="#D4D4D4" />
-      <path
-        d="M9.5 14.382V9.618a.5.5 0 0 1 .724-.447l4.764 2.382a.5.5 0 0 1 0 .894l-4.764 2.382a.5.5 0 0 1-.724-.447Z"
-        fill="#A3A3A3"
-        stroke="#A3A3A3"
-      />
-    </svg>
-  )
-}
-
 export function Hero() {
   return (
     <div className="overflow-hidden py-20 sm:py-32 lg:pb-32 xl:pb-36 text-white">
@@ -96,28 +81,25 @@ export function Hero() {
         <div className="lg:grid lg:grid-cols-12 lg:gap-x-8 lg:gap-y-20">
           <div className="relative z-10 mx-auto max-w-2xl lg:col-span-7 lg:max-w-none lg:pt-6 xl:col-span-6">
             <h1 className="text-4xl font-medium tracking-tight text-white">
-              O sono do seu bebê sob controle
+              Seu bebê não dorme bem e você está extremamente cansada?
             </h1>
             <p className="mt-6 text-lg text-gray-200">
-              Napfy calcula as janelas de sono ideais e envia lembretes no momento perfeito.
-              Baseado nas diretrizes da Sociedade Brasileira de Pediatria.
+              E se você soubesse EXATAMENTE quando colocar seu bebê para dormir?
+            </p>
+            <p className="mt-4 text-lg text-gray-200">
+              Sem adivinhar. Sem testar às cegas. Sem passar da hora.
+            </p>
+            <p className="mt-4 text-lg font-semibold text-white">
+              Não é sorte. É ciência.
             </p>
             <div className="mt-8 flex flex-wrap gap-x-6 gap-y-4">
               <AppStoreLink />
-              <Button
-                href="#features"
-                variant="outline"
-                className="text-white border-white hover:bg-white/10"
-              >
-                <PlayIcon className="h-6 w-6 flex-none stroke-white" />
-                <span className="ml-2.5 text-white">Ver como funciona</span>
-              </Button>
             </div>
           </div>
           <div className="relative mt-10 sm:mt-20 lg:col-span-5 lg:row-span-2 lg:mt-0 xl:col-span-6">
             <BackgroundIllustration className="absolute top-4 left-1/2 h-[1026px] w-[1026px] -translate-x-1/3 mask-[linear-gradient(to_bottom,white_20%,transparent_75%)] stroke-gray-300/70 sm:top-16 sm:-translate-x-1/2 lg:-top-16 lg:ml-12 xl:-top-14 xl:ml-0" />
-            <div className="-mx-4 h-[550px] mask-[linear-gradient(to_bottom,white_60%,transparent)] px-9 sm:mx-0 lg:absolute lg:-inset-x-10 sm:-bottom-50 lg:-top-37 lg:-bottom-50 lg:h-auto lg:px-0 lg:pt-10 xl:-bottom-50">
-              <PhoneFrame className="mx-auto max-w-[366px]" priority>
+            <div className="-mx-4 h-[470px] sm:h-[900px] md:h-[900px] px-9 sm:mx-0 lg:absolute lg:-inset-x-10 sm:-bottom-50 lg:-top-32 lg:-bottom-50 lg:h-auto lg:px-0 lg:pt-10 lg:mask-[linear-gradient(to_bottom,white_60%,transparent)] xl:-bottom-50">
+              <PhoneFrame className="mx-auto max-w-[280px] sm:max-w-[366px] md:max-w-[420px] lg:max-w-[366px]" priority>
                 <AppScreen />
               </PhoneFrame>
             </div>
@@ -129,15 +111,5 @@ export function Hero() {
 }
 
 function AppScreen() {
-  return (
-    <div className="relative w-full h-full bg-white">
-      <Image
-        src={mainScreen}
-        alt="Napfy App"
-        fill
-        className="object-cover"
-        priority
-      />
-    </div>
-  )
+  return <VideoPlayer src="/videos/Main.mov" />
 }
