@@ -37,11 +37,10 @@ export function OurStory() {
               <div className="bg-white p-4 shadow-[0_10px_40px_rgba(0,0,0,0.3)]">
                 <div className="relative aspect-square overflow-hidden">
                   <Image
-                    src="https://i.imgur.com/6K29Mbr.jpeg"
+                    src="/images/family-photo.jpeg"
                     alt="Marla, Fábio, Fabinho e Duda"
                     fill
                     className="object-cover"
-                    unoptimized
                   />
                 </div>
                 <div className="mt-4 pb-2 text-center">
