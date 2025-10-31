@@ -111,5 +111,5 @@ export function Hero() {
 }
 
 function AppScreen() {
-  return <VideoPlayer src="/videos/Main.mov" />
+  return <VideoPlayer src="https://vimeo.com/1132341055?share=copy&fl=sv&fe=ci" />
 }
