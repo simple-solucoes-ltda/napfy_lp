@@ -1,12 +1,13 @@
 import { logEvent } from 'firebase/analytics'
-import { analytics } from './firebase'
+import { getFirebaseAnalytics } from './firebase'
 
 type ButtonLocation = 'hero' | 'header_mobile' | 'header_desktop' | 'cta_final'
 type DeviceType = 'mobile' | 'desktop'
 type VideoEventType = 'play' | 'pause' | 'mute' | 'unmute'
 type VideoProgress = 25 | 50 | 75 | 100
 
-export const trackDownloadClick = (buttonLocation: ButtonLocation) => {
+export const trackDownloadClick = async (buttonLocation: ButtonLocation) => {
+  const analytics = await getFirebaseAnalytics()
   if (!analytics) return
 
   logEvent(analytics, 'click_download_app', {
@@ -14,13 +15,16 @@ export const trackDownloadClick = (buttonLocation: ButtonLocation) => {
     platform: 'ios',
     timestamp: new Date().toISOString(),
   })
+
+  console.log('📊 Event tracked: click_download_app', { button_location: buttonLocation })
 }
 
-export const trackVideoEvent = (
+export const trackVideoEvent = async (
   eventType: VideoEventType,
   videoId: string,
   isMuted?: boolean,
 ) => {
+  const analytics = await getFirebaseAnalytics()
   if (!analytics) return
 
   logEvent(analytics, `video_${eventType}`, {
@@ -30,12 +34,15 @@ export const trackVideoEvent = (
     is_muted: isMuted,
     timestamp: new Date().toISOString(),
   })
+
+  console.log(`📊 Event tracked: video_${eventType}`, { videoId, isMuted })
 }
 
-export const trackVideoProgress = (
+export const trackVideoProgress = async (
   progress: VideoProgress,
   videoId: string,
 ) => {
+  const analytics = await getFirebaseAnalytics()
   if (!analytics) return
 
   logEvent(analytics, 'video_progress', {
@@ -45,13 +52,16 @@ export const trackVideoProgress = (
     progress_percentage: progress,
     timestamp: new Date().toISOString(),
   })
+
+  console.log('📊 Event tracked: video_progress', { progress, videoId })
 }
 
-export const trackFeatureView = (
+export const trackFeatureView = async (
   featureName: string,
   featureIndex: number,
   deviceType: DeviceType,
 ) => {
+  const analytics = await getFirebaseAnalytics()
   if (!analytics) return
 
   logEvent(analytics, 'view_feature_tab', {
@@ -60,9 +70,12 @@ export const trackFeatureView = (
     device_type: deviceType,
     timestamp: new Date().toISOString(),
   })
+
+  console.log('📊 Event tracked: view_feature_tab', { featureName, deviceType })
 }
 
-export const trackFaqExpand = (question: string, questionIndex: number) => {
+export const trackFaqExpand = async (question: string, questionIndex: number) => {
+  const analytics = await getFirebaseAnalytics()
   if (!analytics) return
 
   logEvent(analytics, 'expand_faq', {
@@ -70,9 +83,12 @@ export const trackFaqExpand = (question: string, questionIndex: number) => {
     question_index: questionIndex,
     timestamp: new Date().toISOString(),
   })
+
+  console.log('📊 Event tracked: expand_faq', { question })
 }
 
-export const trackNavClick = (linkText: string, deviceType: DeviceType) => {
+export const trackNavClick = async (linkText: string, deviceType: DeviceType) => {
+  const analytics = await getFirebaseAnalytics()
   if (!analytics) return
 
   logEvent(analytics, 'click_nav_link', {
@@ -80,9 +96,12 @@ export const trackNavClick = (linkText: string, deviceType: DeviceType) => {
     device_type: deviceType,
     timestamp: new Date().toISOString(),
   })
+
+  console.log('📊 Event tracked: click_nav_link', { linkText, deviceType })
 }
 
-export const trackContactClick = (email: string) => {
+export const trackContactClick = async (email: string) => {
+  const analytics = await getFirebaseAnalytics()
   if (!analytics) return
 
   logEvent(analytics, 'click_contact_email', {
@@ -90,4 +109,6 @@ export const trackContactClick = (email: string) => {
     location: 'faqs_section',
     timestamp: new Date().toISOString(),
   })
+
+  console.log('📊 Event tracked: click_contact_email', { email })
 }
