@@ -1,12 +1,17 @@
 'use client'
 
 import { useRef, useState, useEffect } from 'react'
+import {
+  trackVideoEvent,
+  trackVideoProgress,
+} from '@/lib/analytics'
 
 export function VideoPlayer({ src }: { src: string }) {
   const iframeRef = useRef<HTMLIFrameElement>(null)
   const [showPlayButton, setShowPlayButton] = useState(true)
   const [isPlaying, setIsPlaying] = useState(false)
   const [isMuted, setIsMuted] = useState(false)
+  const progressTracked = useRef({ 25: false, 50: false, 75: false, 100: false })
 
   // Extract video ID from URL
   const getVideoId = (url: string) => {
@@ -37,6 +42,7 @@ export function VideoPlayer({ src }: { src: string }) {
       iframeRef.current.contentWindow?.postMessage('{"method":"play"}', '*')
       setShowPlayButton(false)
       setIsPlaying(true)
+      trackVideoEvent('play', video.id, isMuted)
     }
   }
 
@@ -45,6 +51,7 @@ export function VideoPlayer({ src }: { src: string }) {
       iframeRef.current.contentWindow?.postMessage('{"method":"pause"}', '*')
       setIsPlaying(false)
       setShowPlayButton(true)
+      trackVideoEvent('pause', video.id, isMuted)
     }
   }
 
@@ -57,6 +64,7 @@ export function VideoPlayer({ src }: { src: string }) {
         '*'
       )
       setIsMuted(newMutedState)
+      trackVideoEvent(newMutedState ? 'mute' : 'unmute', video.id, newMutedState)
     }
   }
 
@@ -74,6 +82,26 @@ export function VideoPlayer({ src }: { src: string }) {
           } else if (data.event === 'play') {
             setShowPlayButton(false)
             setIsPlaying(true)
+          } else if (data.event === 'timeupdate' && data.data) {
+            // Track video progress at 25%, 50%, 75%, 100%
+            const { percent, duration } = data.data
+            if (!percent || !duration) return
+
+            const percentage = Math.floor(percent * 100)
+
+            if (percentage >= 25 && !progressTracked.current[25]) {
+              progressTracked.current[25] = true
+              trackVideoProgress(25, video.id)
+            } else if (percentage >= 50 && !progressTracked.current[50]) {
+              progressTracked.current[50] = true
+              trackVideoProgress(50, video.id)
+            } else if (percentage >= 75 && !progressTracked.current[75]) {
+              progressTracked.current[75] = true
+              trackVideoProgress(75, video.id)
+            } else if (percentage >= 100 && !progressTracked.current[100]) {
+              progressTracked.current[100] = true
+              trackVideoProgress(100, video.id)
+            }
           }
         } catch (e) {
           // Ignore parsing errors
@@ -81,9 +109,18 @@ export function VideoPlayer({ src }: { src: string }) {
       }
 
       window.addEventListener('message', handleMessage)
+
+      // Enable time updates from Vimeo
+      if (iframeRef.current) {
+        iframeRef.current.contentWindow?.postMessage(
+          '{"method":"addEventListener","value":"timeupdate"}',
+          '*'
+        )
+      }
+
       return () => window.removeEventListener('message', handleMessage)
     }
-  }, [video.platform])
+  }, [video.platform, video.id])
 
   if (video.platform === 'vimeo') {
     return (

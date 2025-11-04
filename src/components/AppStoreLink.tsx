@@ -1,17 +1,27 @@
+'use client'
+
 import Link from 'next/link'
 import clsx from 'clsx'
+import { trackDownloadClick } from '@/lib/analytics'
 
 export function AppStoreLink({
   color = 'black',
+  location = 'hero',
 }: {
   color?: 'black' | 'white'
+  location?: 'hero' | 'header_mobile' | 'header_desktop' | 'cta_final'
 }) {
+  const handleClick = () => {
+    trackDownloadClick(location)
+  }
+
   return (
     <Link
       href="https://apps.apple.com/br/app/napfy/id6752109860"
       aria-label="Download on the App Store"
       target="_blank"
       rel="noopener noreferrer"
+      onClick={handleClick}
       className={clsx(
         'rounded-lg transition-colors px-4',
         color === 'black'

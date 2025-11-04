@@ -3,6 +3,7 @@
 import { useRef, useState } from 'react'
 import Link from 'next/link'
 import { AnimatePresence, motion } from 'framer-motion'
+import { trackNavClick } from '@/lib/analytics'
 
 export function NavLinks() {
   let [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
@@ -21,6 +22,7 @@ export function NavLinks() {
       href={href}
       target={isExternal ? "_blank" : undefined}
       rel={isExternal ? "noopener noreferrer" : undefined}
+      onClick={() => trackNavClick(label, 'desktop')}
       className="relative -mx-3 -my-2 rounded-lg px-3 py-2 text-sm text-white transition-colors delay-150 hover:text-gray-100 hover:delay-0"
       onMouseEnter={() => {
         if (timeoutRef.current) {

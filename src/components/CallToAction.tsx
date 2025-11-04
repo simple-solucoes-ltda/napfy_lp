@@ -39,7 +39,7 @@ export function CallToAction() {
             Sem adivinhar. Sem ansiedade. Sem ficar testando às cegas.
           </p>
           <div className="mt-8 flex justify-center">
-            <AppStoreLink color="white" />
+            <AppStoreLink color="white" location="cta_final" />
           </div>
 
           <div className="mt-8 flex flex-wrap justify-center gap-x-8 gap-y-4">

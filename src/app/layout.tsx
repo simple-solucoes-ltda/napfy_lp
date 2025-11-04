@@ -2,6 +2,7 @@ import { type Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import clsx from 'clsx'
 import { Analytics } from '@vercel/analytics/react'
+import { FirebaseAnalytics } from '@/components/FirebaseAnalytics'
 
 import '@/styles/tailwind.css'
 
@@ -30,6 +31,7 @@ export default function RootLayout({
       <body>
         {children}
         <Analytics />
+        <FirebaseAnalytics />
       </body>
     </html>
   )

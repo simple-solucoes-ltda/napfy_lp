@@ -2,6 +2,7 @@
 
 import { Container } from '@/components/Container'
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
+import { trackFaqExpand, trackContactClick } from '@/lib/analytics'
 
 const faqs = [
   {
@@ -57,7 +58,14 @@ export function Faqs() {
               <Disclosure key={index}>
                 {({ open }) => (
                   <div className="rounded-2xl border border-teal-500/40 bg-teal-900/40 transition-colors hover:bg-teal-900/60">
-                    <DisclosureButton className="flex w-full items-center justify-between px-6 py-6 text-left">
+                    <DisclosureButton
+                      className="flex w-full items-center justify-between px-6 py-6 text-left"
+                      onClick={() => {
+                        if (!open) {
+                          trackFaqExpand(faq.question, index)
+                        }
+                      }}
+                    >
                       <span className="text-lg font-semibold text-white">
                         {faq.question}
                       </span>
@@ -92,6 +100,7 @@ export function Faqs() {
               <a
                 href="mailto:hello@napfy.co"
                 className="text-gray-300 underline transition-colors hover:text-white"
+                onClick={() => trackContactClick('hello@napfy.co')}
               >
                 entre em contato
               </a>

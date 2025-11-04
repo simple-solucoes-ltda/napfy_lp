@@ -13,6 +13,7 @@ import { PhoneFrame } from '@/components/PhoneFrame'
 import sleepTrackerScreen from '@/images/Screen - SleepTracker.jpg'
 import historyScreen from '@/images/Screen - History.jpg'
 import analysisScreen from '@/images/Screen - Analysis.jpg'
+import { trackFeatureView } from '@/lib/analytics'
 
 const features = [
   {
@@ -134,6 +135,7 @@ function FeaturesDesktop() {
     (selectedIndex: number) => {
       setSelectedIndex(selectedIndex)
       setChangeCount((changeCount) => changeCount + 1)
+      trackFeatureView(features[selectedIndex].name, selectedIndex, 'desktop')
     },
     100,
     { leading: true }
@@ -205,7 +207,9 @@ function FeaturesMobile() {
       (entries) => {
         for (let entry of entries) {
           if (entry.isIntersecting && entry.target instanceof HTMLDivElement) {
-            setActiveIndex(slideRefs.current.indexOf(entry.target))
+            const index = slideRefs.current.indexOf(entry.target)
+            setActiveIndex(index)
+            trackFeatureView(features[index].name, index, 'mobile')
             break
           }
         }

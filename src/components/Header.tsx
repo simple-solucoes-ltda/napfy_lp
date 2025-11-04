@@ -13,6 +13,8 @@ import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import { Logo } from '@/components/Logo'
 import { NavLinks } from '@/components/NavLinks'
+import { AppStoreLink } from '@/components/AppStoreLink'
+import { trackNavClick } from '@/lib/analytics'
 
 function MenuIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
@@ -111,15 +113,33 @@ export function Header() {
                           }}
                         >
                           <div className="space-y-4">
-                            <MobileNavLink href="/#features">
+                            <MobileNavLink
+                              href="/#features"
+                              onClick={() => trackNavClick('Funcionalidades', 'mobile')}
+                            >
                               Funcionalidades
                             </MobileNavLink>
-                            <MobileNavLink href="/#faqs">Dúvidas</MobileNavLink>
-                            <MobileNavLink href="/terms">Termos</MobileNavLink>
-                            <MobileNavLink href="/privacy">Privacidade</MobileNavLink>
+                            <MobileNavLink
+                              href="/#faqs"
+                              onClick={() => trackNavClick('Dúvidas', 'mobile')}
+                            >
+                              Dúvidas
+                            </MobileNavLink>
+                            <MobileNavLink
+                              href="/terms"
+                              onClick={() => trackNavClick('Termos', 'mobile')}
+                            >
+                              Termos
+                            </MobileNavLink>
+                            <MobileNavLink
+                              href="/privacy"
+                              onClick={() => trackNavClick('Privacidade', 'mobile')}
+                            >
+                              Privacidade
+                            </MobileNavLink>
                           </div>
                           <div className="mt-8 flex flex-col gap-4">
-                            <Button href="https://apps.apple.com/br/app/napfy/id6752109860" color="orange">Baixar o app</Button>
+                            <AppStoreLink color="black" location="header_mobile" />
                           </div>
                         </PopoverPanel>
                       </>
@@ -129,7 +149,7 @@ export function Header() {
               )}
             </Popover>
             <div className="flex items-center gap-6 max-lg:hidden">
-              <Button href="https://apps.apple.com/br/app/napfy/id6752109860" color="orange">Baixar app</Button>
+              <AppStoreLink color="black" location="header_desktop" />
             </div>
           </div>
         </Container>
