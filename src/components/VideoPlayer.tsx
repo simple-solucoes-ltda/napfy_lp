@@ -76,29 +76,37 @@ export function VideoPlayer({ src }: { src: string }) {
 
         try {
           const data = JSON.parse(event.data)
+
           if (data.event === 'pause' || data.event === 'ended') {
             setShowPlayButton(true)
             setIsPlaying(false)
           } else if (data.event === 'play') {
             setShowPlayButton(false)
             setIsPlaying(true)
-          } else if (data.event === 'timeupdate' && data.data) {
+          } else if ((data.event === 'timeupdate' || data.event === 'playProgress') && data.data) {
             // Track video progress at 25%, 50%, 75%, 100%
-            const { percent, duration } = data.data
-            if (!percent || !duration) return
+            const { percent } = data.data
+            if (percent === undefined) return
 
             const percentage = Math.floor(percent * 100)
 
-            if (percentage >= 25 && !progressTracked.current[25]) {
+            // Check each milestone independently (not else-if chain)
+            if (percentage >= 25 && percentage < 50 && !progressTracked.current[25]) {
               progressTracked.current[25] = true
               trackVideoProgress(25, video.id)
-            } else if (percentage >= 50 && !progressTracked.current[50]) {
+            }
+
+            if (percentage >= 50 && percentage < 75 && !progressTracked.current[50]) {
               progressTracked.current[50] = true
               trackVideoProgress(50, video.id)
-            } else if (percentage >= 75 && !progressTracked.current[75]) {
+            }
+
+            if (percentage >= 75 && percentage < 95 && !progressTracked.current[75]) {
               progressTracked.current[75] = true
               trackVideoProgress(75, video.id)
-            } else if (percentage >= 100 && !progressTracked.current[100]) {
+            }
+
+            if (percentage >= 95 && !progressTracked.current[100]) {
               progressTracked.current[100] = true
               trackVideoProgress(100, video.id)
             }
@@ -110,15 +118,20 @@ export function VideoPlayer({ src }: { src: string }) {
 
       window.addEventListener('message', handleMessage)
 
-      // Enable time updates from Vimeo
-      if (iframeRef.current) {
-        iframeRef.current.contentWindow?.postMessage(
-          '{"method":"addEventListener","value":"timeupdate"}',
-          '*'
-        )
-      }
+      // Wait for iframe to load, then register timeupdate listener
+      const timer = setTimeout(() => {
+        if (iframeRef.current) {
+          iframeRef.current.contentWindow?.postMessage(
+            '{"method":"addEventListener","value":"timeupdate"}',
+            '*'
+          )
+        }
+      }, 1000)
 
-      return () => window.removeEventListener('message', handleMessage)
+      return () => {
+        clearTimeout(timer)
+        window.removeEventListener('message', handleMessage)
+      }
     }
   }, [video.platform, video.id])
 

@@ -15,8 +15,6 @@ export const trackDownloadClick = async (buttonLocation: ButtonLocation) => {
     platform: 'ios',
     timestamp: new Date().toISOString(),
   })
-
-  console.log('📊 Event tracked: click_download_app', { button_location: buttonLocation })
 }
 
 export const trackVideoEvent = async (
@@ -34,8 +32,6 @@ export const trackVideoEvent = async (
     is_muted: isMuted,
     timestamp: new Date().toISOString(),
   })
-
-  console.log(`📊 Event tracked: video_${eventType}`, { videoId, isMuted })
 }
 
 export const trackVideoProgress = async (
@@ -52,8 +48,6 @@ export const trackVideoProgress = async (
     progress_percentage: progress,
     timestamp: new Date().toISOString(),
   })
-
-  console.log('📊 Event tracked: video_progress', { progress, videoId })
 }
 
 export const trackFeatureView = async (
@@ -70,8 +64,6 @@ export const trackFeatureView = async (
     device_type: deviceType,
     timestamp: new Date().toISOString(),
   })
-
-  console.log('📊 Event tracked: view_feature_tab', { featureName, deviceType })
 }
 
 export const trackFaqExpand = async (question: string, questionIndex: number) => {
@@ -83,8 +75,6 @@ export const trackFaqExpand = async (question: string, questionIndex: number) =>
     question_index: questionIndex,
     timestamp: new Date().toISOString(),
   })
-
-  console.log('📊 Event tracked: expand_faq', { question })
 }
 
 export const trackNavClick = async (linkText: string, deviceType: DeviceType) => {
@@ -96,8 +86,6 @@ export const trackNavClick = async (linkText: string, deviceType: DeviceType) =>
     device_type: deviceType,
     timestamp: new Date().toISOString(),
   })
-
-  console.log('📊 Event tracked: click_nav_link', { linkText, deviceType })
 }
 
 export const trackContactClick = async (email: string) => {
@@ -109,6 +97,4 @@ export const trackContactClick = async (email: string) => {
     location: 'faqs_section',
     timestamp: new Date().toISOString(),
   })
-
-  console.log('📊 Event tracked: click_contact_email', { email })
 }

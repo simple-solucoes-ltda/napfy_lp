@@ -33,6 +33,14 @@ export const getFirebaseAnalytics = async () => {
     const app = getFirebaseApp()
     if (app && await isSupported()) {
       analytics = getAnalytics(app)
+
+      // Enable debug mode in development
+      if (process.env.NODE_ENV === 'development') {
+        // @ts-ignore - Firebase debug mode
+        window['gtag']('config', process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID, {
+          debug_mode: true,
+        })
+      }
     }
   }
 
