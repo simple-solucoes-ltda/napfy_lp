@@ -18,11 +18,20 @@ export function MetaPixel() {
 
   useEffect(() => {
     // Skip if already initialized globally or locally
-    if (!pixelId || isPixelInitialized || hasInitialized.current) return
+    if (!pixelId || isPixelInitialized || hasInitialized.current) {
+      console.log('[MetaPixel] Skipping init - already initialized', {
+        isPixelInitialized,
+        hasInitializedCurrent: hasInitialized.current
+      })
+      return
+    }
+
+    console.log('[MetaPixel] Attempting to initialize...')
 
     // Wait for fbq to be available
     const initPixel = () => {
       if (typeof window !== 'undefined' && window.fbq) {
+        console.log('[MetaPixel] fbq available, calling init')
         hasInitialized.current = true
         isPixelInitialized = true
         window.fbq('init', pixelId)
