@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import clsx from 'clsx'
 import { Analytics } from '@vercel/analytics/react'
 import { FirebaseAnalytics } from '@/components/FirebaseAnalytics'
+import { MetaPixel } from '@/components/MetaPixel'
 
 import '@/styles/tailwind.css'
 
@@ -32,6 +33,7 @@ export default function RootLayout({
         {children}
         <Analytics />
         <FirebaseAnalytics />
+        <MetaPixel />
       </body>
     </html>
   )
