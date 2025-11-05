@@ -1,24 +1,24 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import Script from 'next/script'
 
 export function MetaPixel() {
   const pixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID
-  const [isInitialized, setIsInitialized] = useState(false)
+  const initAttempted = useRef(false)
 
   useEffect(() => {
-    // Only initialize once
-    if (isInitialized) return
+    // Only run once per component mount
+    if (initAttempted.current) return
+    initAttempted.current = true
 
-    // Check if fbq is available
+    // Check if fbq is available and not already initialized
     const checkAndInit = () => {
       if (typeof window !== 'undefined' && window.fbq) {
         if (!window._fbq_initialized) {
           window.fbq('init', pixelId!)
           window.fbq('track', 'PageView')
           window._fbq_initialized = true
-          setIsInitialized(true)
         }
       } else {
         // If fbq not ready yet, try again in 100ms
@@ -27,7 +27,7 @@ export function MetaPixel() {
     }
 
     checkAndInit()
-  }, [pixelId, isInitialized])
+  }, [pixelId])
 
   if (!pixelId) return null
 
