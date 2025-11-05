@@ -1,10 +1,33 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Script from 'next/script'
 
 export function MetaPixel() {
   const pixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID
+  const [isInitialized, setIsInitialized] = useState(false)
+
+  useEffect(() => {
+    // Only initialize once
+    if (isInitialized) return
+
+    // Check if fbq is available
+    const checkAndInit = () => {
+      if (typeof window !== 'undefined' && window.fbq) {
+        if (!window._fbq_initialized) {
+          window.fbq('init', pixelId!)
+          window.fbq('track', 'PageView')
+          window._fbq_initialized = true
+          setIsInitialized(true)
+        }
+      } else {
+        // If fbq not ready yet, try again in 100ms
+        setTimeout(checkAndInit, 100)
+      }
+    }
+
+    checkAndInit()
+  }, [pixelId, isInitialized])
 
   if (!pixelId) return null
 
@@ -24,14 +47,6 @@ export function MetaPixel() {
             s.parentNode.insertBefore(t,s)}(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
           `,
-        }}
-        onLoad={() => {
-          // Initialize only once after script loads
-          if (typeof window !== 'undefined' && window.fbq && !window._fbq_initialized) {
-            window.fbq('init', pixelId)
-            window.fbq('track', 'PageView')
-            window._fbq_initialized = true
-          }
         }}
       />
       <noscript>
