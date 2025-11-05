@@ -45,7 +45,8 @@ export function MetaPixel() {
     }
 
     initPixel()
-  }, [pixelId])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   if (!pixelId) return null
 
