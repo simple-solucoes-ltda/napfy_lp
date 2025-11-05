@@ -1,21 +1,12 @@
 // Meta Pixel helper functions
-declare global {
-  interface Window {
-    fbq: (
-      action: string,
-      event: string,
-      params?: Record<string, any>
-    ) => void
-    _fbq_initialized?: boolean
-  }
-}
+import ReactPixel from 'react-facebook-pixel'
 
 export const trackMetaEvent = (
   eventName: string,
   params?: Record<string, any>
 ) => {
-  if (typeof window !== 'undefined' && window.fbq) {
-    window.fbq('track', eventName, params)
+  if (typeof window !== 'undefined') {
+    ReactPixel.track(eventName, params)
   }
 }
 
@@ -65,7 +56,7 @@ export const trackMetaCustomEvent = (
   eventName: string,
   params?: Record<string, any>
 ) => {
-  if (typeof window !== 'undefined' && window.fbq) {
-    window.fbq('trackCustom', eventName, params)
+  if (typeof window !== 'undefined') {
+    ReactPixel.trackCustom(eventName, params)
   }
 }
