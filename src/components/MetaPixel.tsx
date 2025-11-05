@@ -31,11 +31,13 @@ export function MetaPixel() {
     // Wait for fbq to be available
     const initPixel = () => {
       if (typeof window !== 'undefined' && window.fbq) {
-        console.log('[MetaPixel] fbq available, calling init')
+        console.log('[MetaPixel] fbq available, calling init with pixelId:', pixelId)
         hasInitialized.current = true
         isPixelInitialized = true
         window.fbq('init', pixelId)
+        console.log('[MetaPixel] init complete, calling PageView')
         window.fbq('track', 'PageView')
+        console.log('[MetaPixel] PageView tracked')
       } else {
         // Retry after 50ms if fbq not ready
         setTimeout(initPixel, 50)
