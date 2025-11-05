@@ -6,6 +6,7 @@ declare global {
       event: string,
       params?: Record<string, any>
     ) => void
+    _fbq_initialized?: boolean
   }
 }
 
