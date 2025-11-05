@@ -1,12 +1,15 @@
 // Meta Pixel helper functions
-import ReactPixel from 'react-facebook-pixel'
 
 export const trackMetaEvent = (
   eventName: string,
   params?: Record<string, any>
 ) => {
   if (typeof window !== 'undefined') {
-    ReactPixel.track(eventName, params)
+    import('react-facebook-pixel')
+      .then((module) => module.default)
+      .then((ReactPixel) => {
+        ReactPixel.track(eventName, params)
+      })
   }
 }
 
@@ -57,6 +60,10 @@ export const trackMetaCustomEvent = (
   params?: Record<string, any>
 ) => {
   if (typeof window !== 'undefined') {
-    ReactPixel.trackCustom(eventName, params)
+    import('react-facebook-pixel')
+      .then((module) => module.default)
+      .then((ReactPixel) => {
+        ReactPixel.trackCustom(eventName, params)
+      })
   }
 }
