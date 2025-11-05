@@ -1,18 +1,9 @@
 'use client'
 
-import { useEffect } from 'react'
 import Script from 'next/script'
 
 export function MetaPixel() {
   const pixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID
-
-  useEffect(() => {
-    // Initialize Meta Pixel after script loads
-    if (typeof window !== 'undefined' && (window as any).fbq && pixelId) {
-      (window as any).fbq('init', pixelId)
-      (window as any).fbq('track', 'PageView')
-    }
-  }, [pixelId])
 
   if (!pixelId) return null
 
