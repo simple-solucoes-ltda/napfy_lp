@@ -1,6 +1,7 @@
 import { logEvent } from 'firebase/analytics'
 import { getFirebaseAnalytics } from './firebase'
 import { trackMetaLead, trackMetaViewContent, trackMetaCustomEvent, trackMetaContact } from './meta-pixel'
+import { trackTikTokDownload, trackTikTokViewContent, trackTikTokClickButton, trackTikTokContact } from './tiktok-pixel'
 
 type ButtonLocation = 'hero' | 'header_mobile' | 'header_desktop' | 'cta_final'
 type DeviceType = 'mobile' | 'desktop'
@@ -20,6 +21,12 @@ export const trackDownloadClick = async (buttonLocation: ButtonLocation) => {
 
   // Meta Pixel - Lead event (download intent)
   trackMetaLead({
+    content_name: 'Download App',
+    content_category: buttonLocation,
+  })
+
+  // TikTok Pixel - Download event
+  trackTikTokDownload({
     content_name: 'Download App',
     content_category: buttonLocation,
   })
@@ -47,6 +54,12 @@ export const trackVideoEvent = async (
     trackMetaViewContent({
       content_name: 'Product Video',
       content_type: 'video',
+      content_category: 'hero_section',
+    })
+
+    // TikTok Pixel - ViewContent for video play
+    trackTikTokViewContent({
+      content_name: 'Product Video',
       content_category: 'hero_section',
     })
   }
@@ -97,6 +110,12 @@ export const trackFeatureView = async (
     content_type: 'feature',
     content_category: 'product_features',
   })
+
+  // TikTok Pixel - ViewContent for features
+  trackTikTokViewContent({
+    content_name: featureName,
+    content_category: 'product_features',
+  })
 }
 
 export const trackFaqExpand = async (question: string, questionIndex: number) => {
@@ -133,6 +152,12 @@ export const trackNavClick = async (linkText: string, deviceType: DeviceType) =>
     link_text: linkText,
     device_type: deviceType,
   })
+
+  // TikTok Pixel - ClickButton for navigation
+  trackTikTokClickButton({
+    content_name: linkText,
+    content_category: 'navigation',
+  })
 }
 
 export const trackContactClick = async (email: string) => {
@@ -150,5 +175,10 @@ export const trackContactClick = async (email: string) => {
   trackMetaContact({
     content_name: 'Email Contact',
     content_category: 'support',
+  })
+
+  // TikTok Pixel - Contact event
+  trackTikTokContact({
+    content_name: 'Email Contact',
   })
 }

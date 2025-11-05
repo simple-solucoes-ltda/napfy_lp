@@ -4,6 +4,7 @@ import clsx from 'clsx'
 import { Analytics } from '@vercel/analytics/react'
 import { FirebaseAnalytics } from '@/components/FirebaseAnalytics'
 import { MetaPixel } from '@/components/MetaPixel'
+import { TikTokPixel } from '@/components/TikTokPixel'
 
 import '@/styles/tailwind.css'
 
@@ -34,6 +35,7 @@ export default function RootLayout({
         <Analytics />
         <FirebaseAnalytics />
         <MetaPixel />
+        <TikTokPixel />
       </body>
     </html>
   )
