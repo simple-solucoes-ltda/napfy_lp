@@ -29,6 +29,7 @@ export const trackDownloadClick = async (buttonLocation: ButtonLocation) => {
   trackTikTokDownload({
     content_name: 'Download App',
     content_category: buttonLocation,
+    content_id: 'napfy_app',
   })
 }
 
@@ -159,6 +160,7 @@ export const trackNavClick = async (linkText: string, deviceType: DeviceType) =>
   trackTikTokClickButton({
     content_name: linkText,
     content_category: 'navigation',
+    content_id: `nav_${linkText.toLowerCase().replace(/\s+/g, '_')}`,
   })
 }
 
@@ -182,5 +184,6 @@ export const trackContactClick = async (email: string) => {
   // TikTok Pixel - Contact event
   trackTikTokContact({
     content_name: 'Email Contact',
+    content_id: 'contact_email',
   })
 }

@@ -34,12 +34,14 @@ export const trackTikTokViewContent = (params?: {
 export const trackTikTokClickButton = (params?: {
   content_name?: string
   content_category?: string
+  content_id?: string
 }) => {
   trackTikTokEvent('ClickButton', params)
 }
 
 export const trackTikTokContact = (params?: {
   content_name?: string
+  content_id?: string
 }) => {
   trackTikTokEvent('Contact', params)
 }
@@ -47,6 +49,7 @@ export const trackTikTokContact = (params?: {
 export const trackTikTokDownload = (params?: {
   content_name?: string
   content_category?: string
+  content_id?: string
 }) => {
   trackTikTokEvent('Download', params)
 }
