@@ -53,14 +53,15 @@ export const trackVideoEvent = async (
   if (eventType === 'play') {
     trackMetaViewContent({
       content_name: 'Product Video',
-      content_type: 'video',
       content_category: 'hero_section',
+      content_ids: [videoId],
     })
 
     // TikTok Pixel - ViewContent for video play
     trackTikTokViewContent({
       content_name: 'Product Video',
       content_category: 'hero_section',
+      content_id: videoId,
     })
   }
 }
@@ -107,14 +108,15 @@ export const trackFeatureView = async (
   // Meta Pixel - ViewContent for feature engagement
   trackMetaViewContent({
     content_name: featureName,
-    content_type: 'feature',
     content_category: 'product_features',
+    content_ids: [`feature_${featureIndex}`],
   })
 
   // TikTok Pixel - ViewContent for features
   trackTikTokViewContent({
     content_name: featureName,
     content_category: 'product_features',
+    content_id: `feature_${featureIndex}`,
   })
 }
 
