@@ -21,7 +21,7 @@ A Landing Page está capturando um **anonymous_id** (UUID) que identifica cada v
 ## Requisito 1: Extrair anonymous_id do Deep Link
 
 ### O QUE fazer:
-Quando o app abre via OneLink, extrair o parâmetro `af_sub1` que contém o anonymous_id.
+Quando o app abre via OneLink, extrair o parâmetro `deep_link_sub1` que contém o anonymous_id.
 
 ### POR QUÊ:
 Este é o mesmo ID que identificou o usuário na Landing Page. Precisamos dele para o próximo passo.
@@ -29,10 +29,10 @@ Este é o mesmo ID que identificou o usuário na Landing Page. Precisamos dele p
 ### Onde o ID vem:
 A OneLink tem este formato:
 ```
-https://napfy.onelink.me/RAwm/daa4bnyw?af_sub1=abc-123-def-456&utm_source=instagram
+https://napfy.onelink.me/RAwm/daa4bnyw?deep_link_sub1=abc-123-def-456&utm_source=instagram
 ```
 
-O valor de `af_sub1` é o anonymous_id.
+O valor de `deep_link_sub1` é o anonymous_id.
 
 ### Exemplo de implementação (Swift):
 
@@ -49,8 +49,8 @@ func application(_ application: UIApplication,
         return false
     }
 
-    // Extrair af_sub1
-    if let anonymousId = queryItems.first(where: { $0.name == "af_sub1" })?.value {
+    // Extrair deep_link_sub1
+    if let anonymousId = queryItems.first(where: { $0.name == "deep_link_sub1" })?.value {
         print("Anonymous ID from web: \(anonymousId)")
         // Guardar para usar no próximo passo
         UserDefaults.standard.set(anonymousId, forKey: "web_anonymous_id")
@@ -65,7 +65,7 @@ func application(_ application: UIApplication,
 extension AppDelegate: AppsFlyerLibDelegate {
     func onConversionDataSuccess(_ conversionInfo: [AnyHashable: Any]) {
         // AppsFlyer já faz o parsing dos parâmetros
-        if let anonymousId = conversionInfo["af_sub1"] as? String {
+        if let anonymousId = conversionInfo["deep_link_sub1"] as? String {
             print("Anonymous ID from web: \(anonymousId)")
             UserDefaults.standard.set(anonymousId, forKey: "web_anonymous_id")
         }
@@ -74,7 +74,7 @@ extension AppDelegate: AppsFlyerLibDelegate {
 ```
 
 **Opção C: Seu próprio sistema de deep linking**
-Se você tem um router customizado de deep links, extraia `af_sub1` usando seu padrão existente.
+Se você tem um router customizado de deep links, extraia `deep_link_sub1` usando seu padrão existente.
 
 ---
 
@@ -156,7 +156,7 @@ Amplitude.instance().identify(identify)
 1. Distribua build via TestFlight
 2. No iPhone, abra Safari e acesse:
    ```
-   https://napfy.onelink.me/RAwm/daa4bnyw?af_sub1=TEST_ID_12345
+   https://napfy.onelink.me/RAwm/daa4bnyw?deep_link_sub1=TEST_ID_12345
    ```
 3. Clique para abrir o app
 4. No código, adicione log temporário:
@@ -180,7 +180,7 @@ Amplitude.instance().identify(identify)
 1. Acesse: https://hq1.appsflyer.com
 2. Vá em **Dashboard → Installs**
 3. Clique em um install recente
-4. Em "Custom Parameters", você deve ver: `af_sub1: <anonymous_id>`
+4. Em "Custom Parameters", você deve ver: `deep_link_sub1: <anonymous_id>`
 
 ---
 
@@ -209,7 +209,7 @@ Amplitude.instance().identify(identify)
 ┌─────────────────────────────────────────────────┐
 │ 4. Usuário abre o app via OneLink               │
 │    • iOS chama universal link handler           │
-│    • App extrai af_sub1 = "abc-123"             │
+│    • App extrai deep_link_sub1 = "abc-123"      │
 └─────────────────────────────────────────────────┘
                     ↓
 ┌─────────────────────────────────────────────────┐
@@ -237,10 +237,10 @@ Amplitude.instance().identify(identify)
 ## Perguntas Frequentes
 
 ### Q: E se o usuário já tem o app instalado?
-**R:** O OneLink abre o app diretamente. O deep link handler vai receber o `af_sub1` normalmente.
+**R:** O OneLink abre o app diretamente. O deep link handler vai receber o `deep_link_sub1` normalmente.
 
 ### Q: E se o usuário instala, mas não abre via OneLink?
-**R:** Não tem problema. O `af_sub1` não vai estar presente, então você simplesmente não chama `setUserId()`. O Amplitude trata como usuário novo sem histórico web (que é correto).
+**R:** Não tem problema. O `deep_link_sub1` não vai estar presente, então você simplesmente não chama `setUserId()`. O Amplitude trata como usuário novo sem histórico web (que é correto).
 
 ### Q: Precisa chamar setUserId toda vez que o app abre?
 **R:** **Não**. Só precisa chamar uma vez (no primeiro app open via OneLink). Depois disso, o Amplitude já sabe que é o mesmo usuário.
@@ -254,14 +254,14 @@ Amplitude.instance().identify(identify)
 // No SceneDelegate ou AppDelegate
 func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
     if let url = URLContexts.first?.url {
-        // Simula OneLink: myapp://test?af_sub1=DEV_TEST_123
+        // Simula OneLink: myapp://test?deep_link_sub1=DEV_TEST_123
         handleDeepLink(url)
     }
 }
 ```
 
 ### Q: O AppsFlyer SDK é obrigatório?
-**R:** **Não** para este fluxo. Você pode extrair `af_sub1` manualmente via URLComponents.
+**R:** **Não** para este fluxo. Você pode extrair `deep_link_sub1` manualmente via URLComponents.
 O AppsFlyer SDK ajuda com atribuição e outras features, mas não é necessário apenas para pegar o parâmetro.
 
 ### Q: E se o usuário limpar os dados do app?
@@ -294,7 +294,7 @@ Mas isso é **opcional** e pode ser decidido depois.
 
 ## Checklist de Implementação
 
-- [ ] Extrair `af_sub1` do deep link (escolher Opção A, B ou C)
+- [ ] Extrair `deep_link_sub1` do deep link (escolher Opção A, B ou C)
 - [ ] Guardar anonymous_id recebido (UserDefaults, Keychain, etc)
 - [ ] Chamar `Amplitude.setUserId(anonymous_id)` no primeiro app open
 - [ ] Adicionar `platform: "ios"` aos eventos do Amplitude
@@ -311,7 +311,7 @@ Mas isso é **opcional** e pode ser decidido depois.
 
 **Dúvidas sobre este fluxo?**
 - Revisar [plan.md](plan.md) para visão geral da arquitetura
-- Testar com URL customizada: `https://napfy.onelink.me/RAwm/daa4bnyw?af_sub1=SEU_TESTE`
+- Testar com URL customizada: `https://napfy.onelink.me/RAwm/daa4bnyw?deep_link_sub1=SEU_TESTE`
 
 **Documentação Oficial:**
 - [Amplitude iOS SDK](https://www.docs.developers.amplitude.com/data/sdks/ios/)

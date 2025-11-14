@@ -16,7 +16,7 @@ const APP_STORE_URL = 'https://apps.apple.com/app/id6752109860'
  *
  * Includes:
  * - af_web_dp: Desktop redirect to App Store
- * - af_sub1: Anonymous ID for web→app connection
+ * - deep_link_sub1: Anonymous ID for web→app connection
  * - utm_*: All captured UTM parameters (if present)
  *
  * @returns {string} Complete OneLink URL with all parameters
@@ -30,7 +30,7 @@ export const buildOneLinkUrl = (): string => {
   // Add anonymous_id for cross-device tracking
   const anonymousId = getAnonymousId()
   if (anonymousId) {
-    url.searchParams.set('af_sub1', anonymousId)
+    url.searchParams.set('deep_link_sub1', anonymousId)
   }
 
   // Add UTM parameters (only those that exist)

@@ -1,9 +1,13 @@
+'use client'
+
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
 import { Container } from '@/components/Container'
 import { Logo } from '@/components/Logo'
 import qrCode from '@/images/qr-code.svg'
+import { buildOneLinkUrl } from '@/lib/onelink'
 
 function QrCodeBorder(props: React.ComponentPropsWithoutRef<'svg'>) {
   return (
@@ -18,6 +22,13 @@ function QrCodeBorder(props: React.ComponentPropsWithoutRef<'svg'>) {
 }
 
 export function Footer() {
+  const [downloadUrl, setDownloadUrl] = useState('https://apps.apple.com/app/id6752109860')
+
+  useEffect(() => {
+    // Build dynamic OneLink URL with UTMs and anonymous_id
+    setDownloadUrl(buildOneLinkUrl())
+  }, [])
+
   return (
     <footer className="border-t border-white/20 text-white">
       <Container>
@@ -37,7 +48,7 @@ export function Footer() {
             </div>
             <div className="ml-8 lg:w-64">
               <p className="text-base font-semibold text-white">
-                <Link href="https://apps.apple.com/br/app/napfy/id6752109860" target="_blank" rel="noopener noreferrer">
+                <Link href={downloadUrl} target="_blank" rel="noopener noreferrer">
                   <span className="absolute inset-0 sm:rounded-2xl" />
                   Baixe o app
                 </Link>
