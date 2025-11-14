@@ -40,6 +40,7 @@ export function OurStory() {
                     src="/images/family-photo.jpeg"
                     alt="Marla, Fábio, Fabinho e Duda"
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 512px"
                     className="object-cover"
                   />
                 </div>
