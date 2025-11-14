@@ -42,7 +42,6 @@ export function HowItWorks() {
                   alt="Botão Acordar"
                   width={150}
                   height={150}
-                  style={{ width: '150px', height: 'auto' }}
                 />
               </div>
               <h3 className="text-2xl font-semibold text-white">
@@ -80,7 +79,6 @@ export function HowItWorks() {
                   alt="Botão Dormir"
                   width={150}
                   height={150}
-                  style={{ width: '150px', height: 'auto' }}
                 />
               </div>
               <h3 className="text-2xl font-semibold text-white">
