@@ -112,7 +112,6 @@ export default function Privacy() {
                   <ul className="list-disc list-inside space-y-1 text-sm">
                     <li className="text-napfy-teal font-medium">O app funciona 100% normalmente (nenhuma funcionalidade bloqueada)</li>
                     <li>AppsFlyer funciona em modo limitado (via SKAdNetwork da Apple)</li>
-                    <li>Session Replay não grava sua sessão</li>
                     <li>Análises continuam funcionando de forma anônima (Firebase/Amplitude)</li>
                   </ul>
                 </div>
@@ -330,7 +329,7 @@ export default function Privacy() {
 
             <section>
               <h2 className="text-2xl font-medium text-white mb-3">14. CONTATO</h2>
-              <p>Dúvidas sobre privacidade: <a href="mailto:hello@napfy.co" className="text-napfy-teal hover:underline">hello@napfy.co</a></p>
+              <p>Dúvidas sobre privacidade: <a href="mailto:hello@napfy.co" className="text-white hover:text-napfy-teal underline">hello@napfy.co</a></p>
             </section>
           </div>
         </div>
