@@ -40,8 +40,9 @@ export function HowItWorks() {
                 <Image
                   src="/wakeup.png"
                   alt="Botão Acordar"
-                  width={150}
-                  height={150}
+                  width={639}
+                  height={629}
+                  className="w-[150px] h-auto"
                 />
               </div>
               <h3 className="text-2xl font-semibold text-white">
@@ -77,8 +78,9 @@ export function HowItWorks() {
                 <Image
                   src="/sleep.png"
                   alt="Botão Dormir"
-                  width={150}
-                  height={150}
+                  width={634}
+                  height={648}
+                  className="w-[150px] h-auto"
                 />
               </div>
               <h3 className="text-2xl font-semibold text-white">
