@@ -102,7 +102,6 @@ export default function Privacy() {
                   <h3 className="text-lg font-medium text-white mb-2">✅ O que acontece se você PERMITIR:</h3>
                   <ul className="list-disc list-inside space-y-1 text-sm">
                     <li>AppsFlyer coleta IDFA para atribuição precisa de marketing</li>
-                    <li>Session Replay pode gravar sua sessão (1% de chance)</li>
                     <li>Nos ajuda a melhorar campanhas e experiência do app</li>
                   </ul>
                 </div>
