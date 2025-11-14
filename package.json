@@ -10,6 +10,8 @@
   },
   "browserslist": "defaults, not ie <= 11",
   "dependencies": {
+    "@amplitude/analytics-browser": "^2.30.1",
+    "@amplitude/unified": "^1.0.0-beta.9",
     "@headlessui/react": "^2.2.6",
     "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/postcss": "^4.1.11",

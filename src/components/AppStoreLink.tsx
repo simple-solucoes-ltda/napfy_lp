@@ -1,8 +1,10 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import clsx from 'clsx'
 import { trackDownloadClick } from '@/lib/analytics'
+import { buildOneLinkUrl } from '@/lib/onelink'
 
 export function AppStoreLink({
   color = 'black',
@@ -11,13 +13,20 @@ export function AppStoreLink({
   color?: 'black' | 'white'
   location?: 'hero' | 'header_mobile' | 'header_desktop' | 'cta_final'
 }) {
+  const [downloadUrl, setDownloadUrl] = useState('https://apps.apple.com/app/id6752109860')
+
+  useEffect(() => {
+    // Build dynamic OneLink URL with UTMs and anonymous_id
+    setDownloadUrl(buildOneLinkUrl())
+  }, [])
+
   const handleClick = () => {
     trackDownloadClick(location)
   }
 
   return (
     <Link
-      href="https://apps.apple.com/br/app/napfy/id6752109860"
+      href={downloadUrl}
       aria-label="Download on the App Store"
       target="_blank"
       rel="noopener noreferrer"

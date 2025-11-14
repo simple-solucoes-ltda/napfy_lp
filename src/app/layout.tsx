@@ -5,6 +5,7 @@ import { Analytics } from '@vercel/analytics/react'
 import { FirebaseAnalytics } from '@/components/FirebaseAnalytics'
 import { MetaPixel } from '@/components/MetaPixel'
 import { TikTokPixel } from '@/components/TikTokPixel'
+import { AmplitudeAnalytics } from '@/components/AmplitudeAnalytics'
 
 import '@/styles/tailwind.css'
 
@@ -36,6 +37,7 @@ export default function RootLayout({
         <FirebaseAnalytics />
         <MetaPixel />
         <TikTokPixel />
+        <AmplitudeAnalytics />
       </body>
     </html>
   )

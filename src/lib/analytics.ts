@@ -2,6 +2,7 @@ import { logEvent } from 'firebase/analytics'
 import { getFirebaseAnalytics } from './firebase'
 import { trackMetaLead, trackMetaViewContent, trackMetaCustomEvent, trackMetaContact } from './meta-pixel'
 import { trackTikTokDownload, trackTikTokViewContent, trackTikTokClickButton, trackTikTokContact } from './tiktok-pixel'
+import { trackAmplitudeEvent } from './amplitude'
 
 type ButtonLocation = 'hero' | 'header_mobile' | 'header_desktop' | 'cta_final'
 type DeviceType = 'mobile' | 'desktop'
@@ -30,6 +31,12 @@ export const trackDownloadClick = async (buttonLocation: ButtonLocation) => {
     content_name: 'Download App',
     content_category: buttonLocation,
     content_id: 'napfy_app',
+  })
+
+  // Amplitude - Download click event
+  trackAmplitudeEvent('click_download_app', {
+    button_location: buttonLocation,
+    platform: 'ios',
   })
 }
 
@@ -65,6 +72,14 @@ export const trackVideoEvent = async (
       content_id: videoId,
     })
   }
+
+  // Amplitude - Video event
+  trackAmplitudeEvent(`video_${eventType}`, {
+    video_platform: 'vimeo',
+    video_id: videoId,
+    location: 'hero_section',
+    is_muted: isMuted,
+  })
 }
 
 export const trackVideoProgress = async (
@@ -87,6 +102,14 @@ export const trackVideoProgress = async (
   trackMetaCustomEvent('VideoProgress', {
     progress_percentage: progress,
     video_id: videoId,
+  })
+
+  // Amplitude - Video progress
+  trackAmplitudeEvent('video_progress', {
+    video_platform: 'vimeo',
+    video_id: videoId,
+    location: 'hero_section',
+    progress_percentage: progress,
   })
 }
 
@@ -119,6 +142,13 @@ export const trackFeatureView = async (
     content_category: 'product_features',
     content_id: `feature_${featureIndex}`,
   })
+
+  // Amplitude - Feature view
+  trackAmplitudeEvent('view_feature_tab', {
+    feature_name: featureName,
+    feature_index: featureIndex,
+    device_type: deviceType,
+  })
 }
 
 export const trackFaqExpand = async (question: string, questionIndex: number) => {
@@ -134,6 +164,12 @@ export const trackFaqExpand = async (question: string, questionIndex: number) =>
 
   // Meta Pixel - Custom event for FAQ engagement
   trackMetaCustomEvent('FAQExpand', {
+    question,
+    question_index: questionIndex,
+  })
+
+  // Amplitude - FAQ expand
+  trackAmplitudeEvent('expand_faq', {
     question,
     question_index: questionIndex,
   })
@@ -162,6 +198,12 @@ export const trackNavClick = async (linkText: string, deviceType: DeviceType) =>
     content_category: 'navigation',
     content_id: `nav_${linkText.toLowerCase().replace(/\s+/g, '_')}`,
   })
+
+  // Amplitude - Navigation click
+  trackAmplitudeEvent('click_nav_link', {
+    link_text: linkText,
+    device_type: deviceType,
+  })
 }
 
 export const trackContactClick = async (email: string) => {
@@ -185,5 +227,11 @@ export const trackContactClick = async (email: string) => {
   trackTikTokContact({
     content_name: 'Email Contact',
     content_id: 'contact_email',
+  })
+
+  // Amplitude - Contact click
+  trackAmplitudeEvent('click_contact_email', {
+    email,
+    location: 'faqs_section',
   })
 }
