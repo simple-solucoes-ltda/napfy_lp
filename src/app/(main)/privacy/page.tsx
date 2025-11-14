@@ -40,7 +40,7 @@ export default function Privacy() {
                       <p className="font-medium text-white mb-1">Firebase Analytics:</p>
                       <ul className="list-disc list-inside space-y-1 text-sm">
                         <li>Modelo do dispositivo e versão do iOS</li>
-                        <li>Eventos de interação (ex: "usuário visualizou tela X")</li>
+                        <li>Eventos de interação (ex: &quot;usuário visualizou tela X&quot;)</li>
                         <li>Estatísticas de uso do app</li>
                       </ul>
                     </div>
@@ -62,7 +62,7 @@ export default function Privacy() {
                         <li>Dados sensíveis (senhas, pagamentos) são automaticamente mascarados</li>
                         <li className="text-napfy-teal">Dados de sono do bebê NÃO são incluídos (ficam locais)</li>
                       </ul>
-                      <p className="mt-2 text-sm">Você pode desativar via "Não Permitir Rastreamento" no iOS</p>
+                      <p className="mt-2 text-sm">Você pode desativar via &quot;Não Permitir Rastreamento&quot; no iOS</p>
                     </div>
 
                     <div>
